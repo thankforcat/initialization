@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # bash <(curl -Ls https://raw.githubusercontent.com/thankforcat/initialization/refs/heads/main/git/init_project.sh)
-
+# https://github.com/thankforcat/initialization
 # 提示用户输入项目名称
 read -p "请输入你的项目名称: " project_name
 
@@ -14,8 +14,7 @@ git init
 # 创建 dev 分支
 git checkout -b dev
 
-# 打开 VS Code
-code .
+
 
 # 创建 README.md 文件
 echo "# $project_name" > README.md
@@ -49,3 +48,8 @@ fi
 
 # 提示完成
 echo "项目 $project_name 已创建，包含 README.md 和 .gitignore 文件，并已推送到 GitHub！"
+
+
+
+# 打开 VS Code
+# code .
