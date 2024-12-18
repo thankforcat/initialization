@@ -6,7 +6,7 @@
 read -p "请输入你的项目名称: " project_name
 
 # 创建项目目录
-mkdir "$project_name" && cd "$project_name"
+mkdir "$project_name" 
 
 # 初始化 Git 仓库
 git init
@@ -53,6 +53,7 @@ fi
 # 提示完成
 echo "项目 $project_name 已创建，包含 README.md 和 .gitignore 文件，并已推送到 GitHub！"
 
+cd "$project_name"
 
 
 # 打开 VS Code
