@@ -31,6 +31,10 @@ images
 *.db
 .env" > .gitignore
 
+# 添加文件到 Git 并提交
+git add .
+git commit -m "Initial commit"
+
 # 提示用户是创建私人还是公开仓库
 read -p "请选择仓库类型 (1: 私人 [默认], 2: 公开): " repo_type
 
