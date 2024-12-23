@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# bash <(curl -Ls https://raw.githubusercontent.com/thankforcat/initialization/refs/heads/main/git/init_project.sh)
-# https://github.com/thankforcat/initialization
-
 # 提示用户输入项目名称
 read -p "请输入你的项目名称: " project_name
 
@@ -19,7 +16,8 @@ git checkout -b dev
 echo "# $project_name" > README.md
 
 # 创建 .gitignore 文件
-echo "node_modules/
+cat > .gitignore <<EOF
+node_modules/
 .DS_Store
 *.log
 src/images/
@@ -28,7 +26,8 @@ src/images/
 src/config/
 images
 *.db
-.env" > .gitignore
+.env
+EOF
 
 # 添加文件到 Git 并提交
 git add .
@@ -45,4 +44,12 @@ if [ "$repo_type" -eq 2 ]; then
     gh repo create "$project_name" --public --source=. --remote=origin --push
     echo "公开仓库已创建并推送！"
 else
-    gh repo create "$project_n
+    gh repo create "$project_name" --private --source=. --remote=origin --push
+    echo "私人仓库已创建并推送！"
+fi
+
+# 提示完成
+echo "项目 $project_name 已创建，包含 README.md 和 .gitignore 文件，并已推送到 GitHub！"
+
+# 打开 VS Code
+code .
