@@ -1,10 +1,14 @@
 #!/bin/bash
 
+# bash <(curl -Ls https://raw.githubusercontent.com/thankforcat/initialization/refs/heads/main/git/init_project.sh)
+# https://github.com/thankforcat/initialization
 # 提示用户输入项目名称
 read -p "请输入你的项目名称: " project_name
 
-# 创建项目目录并进入
-mkdir "$project_name" && cd "$project_name"
+# 创建项目目录
+mkdir "$project_name" 
+
+cd "$project_name"
 
 # 初始化 Git 仓库
 git init
@@ -12,12 +16,13 @@ git init
 # 创建 dev 分支
 git checkout -b dev
 
+
+
 # 创建 README.md 文件
 echo "# $project_name" > README.md
 
 # 创建 .gitignore 文件
-cat > .gitignore <<EOF
-node_modules/
+echo "node_modules/
 .DS_Store
 *.log
 src/images/
@@ -26,8 +31,7 @@ src/images/
 src/config/
 images
 *.db
-.env
-EOF
+.env" > .gitignore
 
 # 添加文件到 Git 并提交
 git add .
@@ -51,5 +55,8 @@ fi
 # 提示完成
 echo "项目 $project_name 已创建，包含 README.md 和 .gitignore 文件，并已推送到 GitHub！"
 
+cd "$project_name"
+
+
 # 打开 VS Code
-code .
+# code .
