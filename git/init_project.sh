@@ -25,6 +25,9 @@ echo "# $project_name" > README.md
 echo "*.log
 *.db
 
+logs/
+keys/
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
