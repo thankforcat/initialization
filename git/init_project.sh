@@ -22,53 +22,88 @@ git checkout -b dev
 echo "# $project_name" > README.md
 
 # 创建 .gitignore 文件
-echo "*.log
+echo "
+# === Python 编译产物 ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# === 虚拟环境 ===
+venv/
+env/
+.venv/
+.ENV/
+.Python
+pip-wheel-metadata/
+
+# === Jupyter Notebook 检查点 ===
+.ipynb_checkpoints/
+
+# === 配置/密钥/数据库等本地文件 ===
+*.sqlite3
 *.db
+*.log
+*.pid
+*.env
+.env.*
+secrets.*
+credentials.*
+config.yaml
+*.bak
 
-logs/
-keys/
-
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# === 本地缓存/临时文件夹 ===
+.cache/
+*.swp
+*.tmp
+*.temp
 .DS_Store
-*.pem
+Thumbs.db
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# === 运行输出、截图、媒体 ===
+output/
+logs/
+screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.webm
+*.zip
+*.tar.gz
 
-# env files (can opt-in for committing if needed)
-.env*
+# === VSCode / PyCharm / 编辑器文件 ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
 
-# vercel
-.vercel
+# === macOS / Windows 系统文件 ===
+.DS_Store
+ehthumbs.db
+Icon?
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# === Node/npm 支持（如果项目混合） ===
+node_modules/
+package-lock.json
+
+# === Telegram Bot 特定项目建议 ===
+# 上传缓存、Token 或认证文件（你可按需删改）
+uploaded/
+auth.json
+token.txt
+bot_config.json
+
+# === 自定义规则（你可以自己加） ===
+# 忽略你临时写的调试脚本
+debug_*.py
+test_*.py
+
+# 忽略你使用过的某些数据文件夹
+data/
+
 " > .gitignore
 
 # 添加文件到 Git 并提交
