@@ -128,7 +128,7 @@ fi
 # 提示完成
 echo "项目 $project_name 已创建，包含 README.md 和 .gitignore 文件，并已推送到 GitHub！"
 
-cd "$project_name"
+# cd "$project_name"
 
 
 # 打开 VS Code
