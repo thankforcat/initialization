@@ -2,20 +2,16 @@
 
 # bash <(curl -Ls https://raw.githubusercontent.com/thankforcat/initialization/refs/heads/main/git/init_project.sh)
 # https://github.com/thankforcat/initialization
+
 # 提示用户输入项目名称
 read -p "请输入你的项目名称: " project_name
 
 # 创建项目目录
-mkdir "$project_name" 
-
+mkdir "$project_name"
 cd "$project_name"
 
-# 初始化 Git 仓库
-git init
-
-# 创建 dev 分支
-git checkout -b dev
-
+# 初始化 Git 仓库并创建 main 分支
+git init -b main
 
 
 # 创建 README.md 文件
@@ -90,46 +86,47 @@ node_modules/
 package-lock.json
 
 # === Telegram Bot 特定项目建议 ===
-# 上传缓存、Token 或认证文件（你可按需删改）
 uploaded/
 auth.json
 token.txt
 bot_config.json
 
-# === 自定义规则（你可以自己加） ===
-# 忽略你临时写的调试脚本
+# === 自定义规则（你可以自己加）===
 debug_*.py
 test_*.py
-
-# 忽略你使用过的某些数据文件夹
 data/
-
 " > .gitignore
+
+# 创建基础文件和目录
+mkdir logs utils images
+touch main.py .env requirements.txt
 
 # 添加文件到 Git 并提交
 git add .
 git commit -m "Initial commit"
 
+# 创建 dev 分支
+git checkout -b dev
+
+
 # 提示用户是创建私人还是公开仓库
 read -p "请选择仓库类型 (1: 私人 [默认], 2: 公开): " repo_type
-
-# 设置默认值为 1
 repo_type=${repo_type:-1}
 
-# 创建 GitHub 仓库并推送代码
+# 创建 GitHub 仓库（默认主分支为 main）
 if [ "$repo_type" -eq 2 ]; then
-    gh repo create "$project_name" --public --source=. --remote=origin --push
-    echo "公开仓库已创建并推送！"
+    gh repo create "$project_name" --public --source=. --remote=origin --push --default-branch main
+    echo "公开仓库已创建并推送 main 分支！"
 else
-    gh repo create "$project_name" --private --source=. --remote=origin --push
-    echo "私人仓库已创建并推送！"
+    gh repo create "$project_name" --private --source=. --remote=origin --push --default-branch main
+    echo "私人仓库已创建并推送 main 分支！"
 fi
 
+# 推送所有分支
+git push -u origin --all
+
 # 提示完成
-echo "项目 $project_name 已创建，包含 README.md 和 .gitignore 文件，并已推送到 GitHub！"
+echo "项目 $project_name 初始化完成，已推送 main 和 dev 分支到 GitHub！"
 
-# cd "$project_name"
-
-
-# 打开 VS Code
+# 可选：打开 VS Code
 # code .
