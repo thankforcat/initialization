@@ -95,6 +95,9 @@ bot_config.json
 debug_*.py
 test_*.py
 data/
+tests/
+
+
 " > .gitignore
 
 # 创建基础文件和目录
